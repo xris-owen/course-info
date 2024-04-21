@@ -22,4 +22,4 @@ Technologies used:
     <li>Testing: JUnit</li>
 </ul>
 
-<p style="font-size:10px"><span><i><b>Project accompanying the "Building an Application with Java SE17" course on PluralSight</b></i></span></p>
+<p style="font-size:10px"><span><i><b>Project accompanying the "Building an Application with Java SE17" course on PluralSight.</b></i></span></p>
