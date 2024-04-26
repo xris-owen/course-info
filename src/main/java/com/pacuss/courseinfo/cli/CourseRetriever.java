@@ -1,8 +1,13 @@
 package com.pacuss.courseinfo.cli;
 
+import com.pacuss.courseinfo.cli.dto.PluralSightCourse;
 import com.pacuss.courseinfo.cli.service.CourseRetrievalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+
+import static java.util.function.Predicate.not;
 
 public class CourseRetriever {
     public static final Logger LOG = LoggerFactory.getLogger(CourseRetriever.class);
@@ -14,6 +19,7 @@ public class CourseRetriever {
             return;
         }
 
+        // Try block to check for exceptions
         try{
             retrieveCourses(args[0]);
         }catch (Exception ex){
@@ -22,12 +28,18 @@ public class CourseRetriever {
         }
     }
 
+    // Retrieve non-retired courses using the course service.
     private static void retrieveCourses(String authorId) {
         LOG.info("Retrieving courses for author with id " + authorId);
         CourseRetrievalService courseRetrievalService = new CourseRetrievalService();
 
-        String coursesToStore = courseRetrievalService.getCoursesFor(authorId);
-        LOG.info("Retrieved the following courses " + coursesToStore);
+        List<PluralSightCourse> coursesToStore = courseRetrievalService.getCoursesFor(authorId)
+                .stream()
+                .filter(not (PluralSightCourse::isRetired))
+                //.filter(course -> !course.isRetired())
+                .toList();
+
+        LOG.info("Retrieved the following {} courses {}", coursesToStore.size(), coursesToStore);
         //return coursesToStore;
     }
 }
