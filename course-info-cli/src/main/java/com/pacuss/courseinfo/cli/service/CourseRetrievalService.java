@@ -1,6 +1,5 @@
 package com.pacuss.courseinfo.cli.service;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.pacuss.courseinfo.cli.dto.PluralSightCourse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -49,7 +48,8 @@ public class CourseRetrievalService {
                 .constructCollectionType(List.class, PluralSightCourse.class);
 
         // Disabling the mapper object to deserialize properties which cannot be mapped to java class
-        OBJECT_MAPPER.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        // OR Method 2: Providing an annotation at the class level (PluralSightCourse) @JsonIgnoreProperties
+        //OBJECT_MAPPER.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         // mapper reading the json file and deserializes it to LIST of PluralSightCourse object
         return OBJECT_MAPPER.readValue(response.body(), returnType);
