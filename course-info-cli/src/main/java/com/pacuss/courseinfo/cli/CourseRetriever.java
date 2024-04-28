@@ -33,6 +33,7 @@ public class CourseRetriever {
         LOG.info("Retrieving courses for author with id " + authorId);
         CourseRetrievalService courseRetrievalService = new CourseRetrievalService();
 
+        // Get courses for an author and filter retired courses
         List<PluralSightCourse> coursesToStore = courseRetrievalService.getCoursesFor(authorId)
                 .stream()
                 .filter(not (PluralSightCourse::isRetired))
