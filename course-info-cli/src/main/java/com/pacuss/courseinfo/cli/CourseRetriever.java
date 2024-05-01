@@ -2,11 +2,12 @@ package com.pacuss.courseinfo.cli;
 
 import com.pacuss.courseinfo.cli.dto.PluralSightCourse;
 import com.pacuss.courseinfo.cli.service.CourseRetrievalService;
+import com.pacuss.courseinfo.cli.service.CourseStorageService;
+import com.pacuss.courseinfo.repository.CourseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-
 import static java.util.function.Predicate.not;
 
 public class CourseRetriever {
@@ -32,6 +33,8 @@ public class CourseRetriever {
     private static void retrieveCourses(String authorId) {
         LOG.info("Retrieving courses for author with id " + authorId);
         CourseRetrievalService courseRetrievalService = new CourseRetrievalService();
+        CourseRepository courseRepository = CourseRepository.openCourseRepository("./courses.db");
+        CourseStorageService courseStorageService = new CourseStorageService(courseRepository);
 
         // Get courses for an author and filter retired courses
         List<PluralSightCourse> coursesToStore = courseRetrievalService.getCoursesFor(authorId)
@@ -41,6 +44,9 @@ public class CourseRetriever {
                 .toList();
 
         LOG.info("Retrieved the following {} courses {}", coursesToStore.size(), coursesToStore);
+        LOG.info("Saving courses...");
+        courseStorageService.storePluralSightCourses(coursesToStore);
+        LOG.info("Courses stored successfully");
         //return coursesToStore;
     }
 }
