@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class CourseStorageService {
 
-    private final String PS_BASE_URL = "https://app.pluralsight.com";
+    private final String PS_BASE_URL = "https://pluralsight.com";
     private final CourseRepository courseRepository;
 
     public CourseStorageService(CourseRepository courseRepo){
