@@ -11,6 +11,11 @@
 
     <artifactId>course-info-cli</artifactId>
 
+    <properties>
+        <slf4j.version>2.0.0-alpha0</slf4j.version>
+        <jackson.version>2.17.0</jackson.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.pacuss</groupId>
@@ -28,12 +33,7 @@
             <version>${slf4j.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.8.2</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>

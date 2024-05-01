@@ -1,6 +1,5 @@
 package com.pacuss.courseinfo.cli.dto;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -14,7 +13,7 @@ class PluralSightCourseTest {
             23:59:59, 1439
             00:00:00, 0
             """)
-    void durationInMinutes(String input, long expected) {
+    void durationInMinutesTest(String input, long expected) {
         PluralSightCourse pluralSightCourse = new PluralSightCourse("id", "title",
                 input,"www",false);
         assertEquals(expected,pluralSightCourse.durationInMinutes());
