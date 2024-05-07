@@ -26,6 +26,7 @@ class CourseJDBCRepository implements CourseRepository{
 
     CourseJDBCRepository(String databaseFile){
         JdbcDataSource jdbcDataSource = new JdbcDataSource();
+
         jdbcDataSource.setURL(H2_DB_URL.formatted(databaseFile));
 
         this.dataSource = jdbcDataSource;
