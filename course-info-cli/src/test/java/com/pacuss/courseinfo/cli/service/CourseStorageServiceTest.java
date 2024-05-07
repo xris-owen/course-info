@@ -22,7 +22,7 @@ class CourseStorageServiceTest {
                 "01:40:00.123", "/url-1", false);
         courseStorageService.storePluralSightCourses(List.of(ps1));
 
-        Course expected = new Course("1", "Title 1", 100, "https://app.pluralsight.com/url-1",
+        Course expected = new Course("1", "Title 1", 100, "https://pluralsight.com/url-1",
                 Optional.empty());
         assertEquals(List.of(expected),courseRepository.getAllCourses());
     }
